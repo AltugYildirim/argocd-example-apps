@@ -5,7 +5,6 @@ metadata:
   labels:
     app: {{ template "helm-guestbook.name" . }}
     chart: {{ template "helm-guestbook.chart" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 spec:
   replicas: {{ .Values.replicaCount }}
@@ -13,12 +12,10 @@ spec:
   selector:
     matchLabels:
       app: {{ template "helm-guestbook.name" . }}
-      app.kubernetes.io/instance: {{ .Release.Name }}
   template:
     metadata:
       labels:
         app: {{ template "helm-guestbook.name" . }}
-        app.kubernetes.io/instance: {{ .Release.Name }}
     spec:
       containers:
         - name: {{ .Chart.Name }}
